@@ -1,0 +1,20 @@
+<h1 align="center">Welcome to Receipe finder !!!!!!</h1>
+<form align= "center" action="/Receipe"	method="GET">
+	
+    <label for="ingredients">Ingredients:</label>
+	<input id="ingredients" type="text" name="i" placeholder="Enter your ingredients">
+    <label for="dishname">Dish:</label>
+	<input id="dishname" type="text" name="q" placeholder="Enter your dish">
+    <input type="submit" >
+
+</form>
+<h1 align="center">Results<h1>
+<ul>
+    {{range.Results}}
+            <li>{{.Title}}</li>
+            <p>{{.Ingredients}}<p>
+            <a href={{.Href}}>link</a>
+            <img src="{{.Thumbnail}}"/>
+      
+    {{end}}
+</ul>
