@@ -1,0 +1,42 @@
+<head>
+    
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+
+<!-- <h1 align="center">Favourites<h1>
+<ul>
+    {{range.Results}}
+            <li>{{.Title}}</li>
+            <p>{{.Ingredients}}<p>
+            <a href={{.Href}}>link</a>
+            <img src="{{.Thumbnail}}"/>
+      
+    {{end}}
+</ul>  -->
+<h1 align="center"> Favourites !!!!!!!!!! </h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+    <th scope="col">Receipe Name</th>
+    <th scope="col">Ingredients</th> 
+    <th scope="col">Image</th>
+    <th scope="col">Link</th>
+   </tr>
+  </thead>
+  
+<tbody>
+    {{range.Results}}
+    <tr>
+           <td class="receipename"> {{.Title}} </td>
+           <td class="ingredients">{{.Ingredients}}</td>
+           <td class="link"><a href={{.Href}}>link</a></td>
+           <td class="image"> <img src="{{.Thumbnail}}"/></td>
+    </tr>  
+    {{end}}
+    </tbody>
+
+</table>

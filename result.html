@@ -1,3 +1,44 @@
+
+<head>
+    
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+
+         var $row = $(this).closest("tr");
+         var $ingredients=$row.find(".ingredients").text()  ;  
+         var $receipename=$row.find(".receipename").text()  ; 
+         var $link =$row.find(".link a").attr("href")  ;
+         console.log($link)
+         var $image=$row.find(".image img").attr("src")  ; 
+         console.log($image)
+        $.post("/addFavourite", { 'ingredients': $ingredients, 'receipe': $receipename, 'link' : $link, 'image' :$image },function(data, status){
+           alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script>
+</head>
+
+<form method="GET" action="/getFavourites">
+    
+    <input type="submit" name="favourite">
+</form>
+
 <h1 align="center">Welcome to Receipe finder !!!!!!</h1>
 <form align= "center" action="/Receipe"	method="GET">
 	
@@ -5,11 +46,11 @@
 	<input id="ingredients" type="text" name="i" placeholder="Enter your ingredients">
     <label for="dishname">Dish:</label>
 	<input id="dishname" type="text" name="q" placeholder="Enter your dish">
-    <input type="submit" >
+    <input class="btn btn-primary" type="submit" >
 
 </form>
 <h1 align="center">Results<h1>
-<ul>
+<!-- <ul>
     {{range.Results}}
             <li>{{.Title}}</li>
             <p>{{.Ingredients}}<p>
@@ -17,4 +58,30 @@
             <img src="{{.Thumbnail}}"/>
       
     {{end}}
-</ul>
+</ul> -->
+
+ 
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+    <th scope="col">Receipe Name</th>
+    <th scope="col">Ingredients</th> 
+    <th scope="col">Image</th>
+    <th scope="col">Link</th>
+    <th scope="col">Favourite</th>
+   </tr>
+  </thead>
+  
+<tbody>
+    {{range.Results}}
+    <tr>
+           <td class="receipename"> {{.Title}} </td>
+           <td class="ingredients">{{.Ingredients}}</td>
+           <td class="link"><a href={{.Href}}>link</a></td>
+           <td class="image"> <img src="{{.Thumbnail}}"/></td>
+           <td> <button > Mark it as favourite </button> </td>
+    </tr>  
+    {{end}}
+    </tbody>
+
+</table>
